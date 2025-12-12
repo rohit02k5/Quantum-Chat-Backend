@@ -17,7 +17,8 @@ router.get(
         // Generate Token
         const token = req.user.getSignedToken(res);
         // Redirect to Frontend with Token
-        res.redirect(`http://localhost:3000/login?token=${token}`);
+        const clientURL = process.env.CLIENT_URL || "http://localhost:3000";
+        res.redirect(`${clientURL}/login?token=${token}`);
     }
 );
 
@@ -29,7 +30,8 @@ router.get(
     passport.authenticate("github", { session: false, failureRedirect: "/login" }),
     (req, res) => {
         const token = req.user.getSignedToken(res);
-        res.redirect(`http://localhost:3000/login?token=${token}`);
+        const clientURL = process.env.CLIENT_URL || "http://localhost:3000";
+        res.redirect(`${clientURL}/login?token=${token}`);
     }
 );
 
