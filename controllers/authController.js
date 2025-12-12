@@ -84,8 +84,9 @@ exports.forgotPasswordController = async (req, res, next) => {
         await user.save();
 
         // Create reset url to frontend
-        const resetUrl = `http://localhost:3000/reset-password/${resetToken}`;
-
+        const clientURL = process.env.CLIENT_URL || "http://localhost:3000";
+        const resetUrl = `${clientURL}/reset-password/${resetToken}`;
+        
         const message = `
       <h1>You have requested a password reset</h1>
       <p>Please go to this link to reset your password:</p>
