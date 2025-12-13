@@ -16,6 +16,7 @@ router.get(
     (req, res) => {
         // Generate Token
         const token = req.user.getSignedToken(res);
+        console.log("Google OAuth Token Generated:", token); 
         // Redirect to Frontend with Token
         const clientURL = process.env.CLIENT_URL || "http://localhost:3000";
         res.redirect(`${clientURL}/login?token=${token}`);
