@@ -3,6 +3,7 @@ const userModel = require("../models/userModel");
 const errorResponse = require("../utils/errorResponse");
 exports.sendToken = (user, statusCode, res) => {
     const token = user.getSignedToken(res);
+      console.log("Generated Token for user " + user.username + ":", token);
     res.status(statusCode).json({
         success: true,
         token,
