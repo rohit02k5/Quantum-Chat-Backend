@@ -7,6 +7,11 @@ const colors = require("colors");
 const morgan = require("morgan");
 const connectDB = require("./config/db");
 const authRoutes = require('./routes/authRoute');
+// Validate critical env vars
+if (!process.env.JWT_ACCESS_SECRET || !process.env.JWT_REFRESH_SECRET) {
+  console.error("FATAL ERROR: JWT_ACCESS_SECRET or JWT_REFRESH_SECRET is not defined.".red.bold);
+  // We don't exit process here to allow other parts to run for debugging, but this explains the 500 error
+}
 const openaiRoutes = require("./routes/openaiRoutes");
 const errorHandler = require("./middlewares/errorMiddleware");
 
