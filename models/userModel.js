@@ -47,7 +47,7 @@ userSchema.methods.getSignedToken = function (res) {
       process.env.JWT_ACCESS_SECRET,
       { expiresIn: process.env.JWT_ACCESS_EXPIREIN }
     );
-
+console.log("JWT Sign Result:", accessToken); // Debug Log
     // Generate refresh token
     const refreshToken = jwt.sign(
       { id: this._id },
