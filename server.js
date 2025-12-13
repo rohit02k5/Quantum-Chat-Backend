@@ -13,6 +13,7 @@ const errorHandler = require("./middlewares/errorMiddleware");
 const helmet = require('helmet');
 const passport = require("./config/passport");
 const app = express();
+app.set("trust proxy", 1);
 app.use(passport.initialize());
 connectDB();
 app.use(
