@@ -9,6 +9,14 @@ const sendEmail = async (options) => {
             user: process.env.SMTP_EMAIL,
             pass: process.env.SMTP_PASSWORD,
         },
+         // CRITICAL FIXES FOR RENDER:
+        logger: true,        // Log to console
+        debug: true,         // Include debug info
+        connectionTimeout: 10000, // 10 seconds
+        greetingTimeout: 5000,    // 5 seconds
+        socketTimeout: 10000,     // 10 seconds
+        dnsTimeout: 5000,         // 5 seconds
+        family: 4,    
     });
 
     const message = {
