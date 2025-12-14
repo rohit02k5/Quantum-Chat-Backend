@@ -9,6 +9,10 @@ exports.requireSignIn = async (req, res, next) => {
     ) {
         try {
             token = req.headers.authorization.split(" ")[1];
+            // CRITICAL FIX: Handle "Bearer undefined" case
+            if (!token || token === "undefined" || token === "null") {
+                return res.status(401).json({ message: "Not authorized, invalid token format" });
+            }
              console.log("Middleware Received Token:", token);
             const decoded = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
             req.user = await User.findById(decoded.id).select("-password");
